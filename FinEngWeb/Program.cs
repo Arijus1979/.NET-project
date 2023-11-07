@@ -1,4 +1,4 @@
-using FinEngWeb.Data;
+using FinEng.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

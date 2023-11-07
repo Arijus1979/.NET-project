@@ -1,7 +1,7 @@
-﻿using FinEngWeb.Models;
+﻿using FinEng.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FinEngWeb.Data
+namespace FinEng.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {

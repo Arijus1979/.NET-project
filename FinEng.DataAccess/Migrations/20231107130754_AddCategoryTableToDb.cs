@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace FinEngWeb.Migrations
+namespace FinEng.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class AddCategoryTableToDb : Migration

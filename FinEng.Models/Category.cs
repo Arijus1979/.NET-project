@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace FinEngWeb.Models
+namespace FinEng.Models
 {
     public class Category
     { 
