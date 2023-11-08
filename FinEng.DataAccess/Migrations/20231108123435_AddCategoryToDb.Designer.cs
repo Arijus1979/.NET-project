@@ -3,6 +3,7 @@ using FinEng.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinEng.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231108123435_AddCategoryToDb")]
+    partial class AddCategoryToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,10 +86,6 @@ namespace FinEng.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Price")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -111,7 +110,6 @@ namespace FinEng.DataAccess.Migrations
                             ProductId = 1,
                             CategoryId = 1,
                             Description = "Nike Air Max 90 Shoes",
-                            ImageUrl = "",
                             Price = "100",
                             Price2 = "90",
                             Title = "Nike Air Max 90"
@@ -121,7 +119,6 @@ namespace FinEng.DataAccess.Migrations
                             ProductId = 2,
                             CategoryId = 1,
                             Description = "Nike Air Max 95 Shoes",
-                            ImageUrl = "",
                             Price = "120",
                             Price2 = "110",
                             Title = "Nike Air Max 95"
@@ -131,7 +128,6 @@ namespace FinEng.DataAccess.Migrations
                             ProductId = 3,
                             CategoryId = 2,
                             Description = "Nike Air Max 97 Shoes",
-                            ImageUrl = "",
                             Price = "140",
                             Price2 = "130",
                             Title = "Nike Air Max 97"
@@ -141,7 +137,6 @@ namespace FinEng.DataAccess.Migrations
                             ProductId = 4,
                             CategoryId = 3,
                             Description = "Nike Air Max 98 Shoes",
-                            ImageUrl = "",
                             Price = "160",
                             Price2 = "150",
                             Title = "Nike Air Max 98"
@@ -151,7 +146,6 @@ namespace FinEng.DataAccess.Migrations
                             ProductId = 5,
                             CategoryId = 4,
                             Description = "Nike Air Max 270 Shoes",
-                            ImageUrl = "",
                             Price = "180",
                             Price2 = "170",
                             Title = "Nike Air Max 270"

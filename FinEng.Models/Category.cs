@@ -4,7 +4,8 @@ using System.ComponentModel.DataAnnotations;
 namespace FinEng.Models
 {
     public class Category
-    { 
+    {
+        [Key] 
         public int CategoryId { get; set; }
         [Required]
         [MaxLength(30)]

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Product>
+
+<style>
+    .card-img {
+        width: 100%;
+        height: 400px; /* Set the desired height */
+        object-fit: cover; /* Maintain the aspect ratio and cover the container */
+    }
+</style>
+
+<div class="row pb-3">
+    @foreach (var product in Model)
+    {
+        <div class="col-lg-3 col-sm-6">
+            <div class="row p-2">
+                <div class="col-12 p-1">
+                    <div class="card border-0 p-3 shadow border-top border-5 rounded">
+                        <img src="@product.ImageUrl" class="card-img-top rounded card-img" />
+                        <div class="card-body pb-0">
+                            <div class="pl-1">
+                                <p class="card-title h5 text-dark opacity-75 text-uppercase text-center">@product.Title</p>
+                                <p class="card-text text-dark text-center">@product.Description</p>
+                            </div>
+                            <div class="pl-1">
+                                <p class="text-dark text-center">As low as: <span>@product.Price2</span> Eur</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

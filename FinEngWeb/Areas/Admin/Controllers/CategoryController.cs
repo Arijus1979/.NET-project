@@ -1,19 +1,21 @@
 ﻿using FinEng.DataAccess.Data;
+using FinEng.DataAccess.Repository.IRepository;
 using FinEng.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FinEngWeb.Controllers
+namespace FinEngWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _db;
-        public CategoryController(ApplicationDbContext db)
+        private readonly IUnitOfWork _unitOfWork;
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-            List<Category> objCategoryList = _db.Categories.ToList();
+            List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
             return View(objCategoryList);
         }
 
@@ -24,14 +26,14 @@ namespace FinEngWeb.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {
-            if(obj.Name.ToLower()==obj.DisplayOrder.ToString())
+            if (obj.Name.ToLower() == obj.DisplayOrder.ToString())
             {
                 ModelState.AddModelError("name", "The category name and display order cannot be the same.");
             }
             if (ModelState.IsValid)
             {
-                _db.Categories.Add(obj);
-                _db.SaveChanges();
+                _unitOfWork.Category.Add(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "The category has been created successfully.";
                 return RedirectToAction("Index");
             }
@@ -40,11 +42,11 @@ namespace FinEngWeb.Controllers
 
         public IActionResult Edit(int? id)
         {
-            if(id == null || id == 0)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
-            Category categoryFromDb = _db.Categories.Find(id);
+            Category categoryFromDb = _unitOfWork.Category.Get(u => u.CategoryId == id);
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -56,21 +58,21 @@ namespace FinEngWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Categories.Update(obj);
-                _db.SaveChanges();
+                _unitOfWork.Category.Update(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "The category has been updated successfully.";
                 return RedirectToAction("Index");
             }
             return View();
         }
 
-        public IActionResult Delete (int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
-            Category categoryFromDb = _db.Categories.Find(id);
+            Category categoryFromDb = _unitOfWork.Category.Get(u => u.CategoryId == id);
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -80,13 +82,13 @@ namespace FinEngWeb.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            Category obj = _db.Categories.Find(id);
-            if(obj == null)
+            Category obj = _unitOfWork.Category.Get(u => u.CategoryId == id);
+            if (obj == null)
             {
                 return NotFound();
             }
-            _db.Categories.Remove(obj);
-            _db.SaveChanges();
+            _unitOfWork.Category.Remove(obj);
+            _unitOfWork.Save();
             TempData["success"] = "The category has been deleted successfully.";
             return RedirectToAction("Index");
         }

@@ -13,12 +13,17 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0-rc.2.23509.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FinEng.DataAccess\FinEng.DataAccess.csproj" />
     <ProjectReference Include="..\FinEng.Models\FinEng.Models.csproj" />
     <ProjectReference Include="..\FinEng.Utility\FinEng.Utility.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\Product\" />
   </ItemGroup>
 
 </Project>
