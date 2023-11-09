@@ -3,7 +3,7 @@
 <style>
     .card-img {
         width: 100%;
-        height: 400px; /* Set the desired height */
+        height: 300px; /* Set the desired height */
         object-fit: cover; /* Maintain the aspect ratio and cover the container */
     }
 </style>
@@ -19,11 +19,19 @@
                         <div class="card-body pb-0">
                             <div class="pl-1">
                                 <p class="card-title h5 text-dark opacity-75 text-uppercase text-center">@product.Title</p>
-                                <p class="card-text text-dark text-center">@product.Description</p>
+                                <p class="card-text text-dark text-center mb-3">@product.Description</p>
+                            </div>
+                            <div class="pl-1">
+                                <p class="text-dark text-center mb-0 text-decoration-line-through"><span>@product.Price</span> Eur</p>
                             </div>
                             <div class="pl-1">
                                 <p class="text-dark text-center">As low as: <span>@product.Price2</span> Eur</p>
                             </div>
+                        </div>
+                        <div>
+                            <a asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-primary bg-gradient border-0 form-control">
+                                Details
+                            </a>
                         </div>
                     </div>
                 </div>
