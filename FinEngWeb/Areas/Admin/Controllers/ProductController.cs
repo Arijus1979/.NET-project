@@ -2,12 +2,15 @@
 using FinEng.DataAccess.Repository.IRepository;
 using FinEng.Models;
 using FinEng.Models.ViewModels;
+using FinEng.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FinEngWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

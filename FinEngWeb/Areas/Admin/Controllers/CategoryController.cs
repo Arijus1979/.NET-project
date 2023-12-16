@@ -1,11 +1,14 @@
 ﻿using FinEng.DataAccess.Data;
 using FinEng.DataAccess.Repository.IRepository;
 using FinEng.Models;
+using FinEng.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinEngWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
